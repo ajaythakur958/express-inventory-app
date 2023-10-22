@@ -1,5 +1,38 @@
 import { body, validationResult } from "express-validator"
-// const validatingData = (
+
+//middleware for validation using express-validator
+const validatingData = async (
+    req,
+    res,
+    next
+) => {
+    console.log(req.body);
+    // first setup rules for express-validator
+    const rules = [
+        body('name').notEmpty().withMessage('Name is required'),
+        body('price').isFloat({ gt: 0 }).withMessage('invalid price'),
+        body('imgurl').isURL().withMessage('invalidURL')
+    ];
+
+    // second step is to run rules
+    await Promise.all(rules.map(rule => rule.run(req)))
+
+    // check if there any errors after running rules 
+    const errors = validationResult(req);
+    console.log(errors);
+
+
+    if (!errors.isEmpty()) {  // sending response if error shows for invalid data from client
+        return res.render('new-product', { errorMessage: errors.array()[0].msg })
+    }
+
+    next()
+}
+
+export default validatingData;
+
+
+// const validatingData = ( 
 //     req,
 //     res,
 //     next
@@ -26,36 +59,3 @@ import { body, validationResult } from "express-validator"
 // }
 
 // export default validatingData;
-
-
-
-//middleware for validation using express-validator
-const validatingData = async (
-    req,
-    res,
-    next
-) => {
-    console.log(req.body);
-    // first setup rules for express-validator
-    const rules = [
-        body('name').isEmpty().withMessage('Name is required'),
-        body('price').isFloat({ gt: 0 }).withMessage('invalid price'),
-        body('imgurl').isURL().withMessage('invalidURL')
-    ];
-
-    // second step is to run rules
-    await Promise.all(rules.map(rule => rule.run(req)))
-
-    // check if there any errors after running rules 
-    const errors = validationResult(req);
-    console.log(errors);
-
-
-    if (!errors.isEmpty()) {  // sending response if error shows for invalid data from client
-        return res.render('new-product', { errorMessage: errors.array()[0].msg })
-    }
-
-    next()
-}
-
-export default validatingData;
