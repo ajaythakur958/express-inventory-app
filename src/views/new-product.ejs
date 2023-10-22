@@ -1,0 +1,27 @@
+<h1 class="mt-5 mb-4">Add New Product Here</h1>
+
+<% if (errorMessage){ %>
+    <div class="alert alert-danger">
+        <%= errorMessage %>
+    </div>
+<% } %>
+
+<form action="/" method="post">
+    <div class="mb-3">
+        <label for="name" class="form-label">Product Name</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <div class="mb-3">
+        <label for="desc" class="form-label">Description</label>
+        <input type="text" class="form-control" id="desc" name="desc" required>
+    </div>
+    <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input type="number" class="form-control" id="price" name="price" required>
+    </div>
+    <div class="mb-3">
+        <label for="imgurl" class="form-label">Image URL</label>
+        <input type="url" class="form-control" id="imgurl" name="imgurl" required>
+    </div>
+    <button type="submit" class="btn btn-primary" >Add Product</button>
+</form>

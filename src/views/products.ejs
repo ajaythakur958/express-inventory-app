@@ -1,0 +1,25 @@
+
+        <table class="table table-dark">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Pic</th>
+            </tr>
+          </thead>
+          <tbody>
+           <% products.forEach(product=>{ %>
+
+              <tr>
+                <th><%= product.id %></th>
+                <th><%= product.name %></th>
+                <td><%= product.desc %></td>
+                <td><%= product.price %></td>
+                <td><img src="<%= product.img %>" ></td>
+              </tr>
+
+            <% }) %>
+          </tbody>
+        </table>
