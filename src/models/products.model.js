@@ -22,6 +22,10 @@ export default class productModel {
       products.push(newProduct);
 
     }
+
+    static getById(id){
+      return products.find((p)=>{p.id == id})
+    }
 }
 
 const products = [

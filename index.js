@@ -18,6 +18,7 @@ server.set("views", path.join(path.resolve(),'src','views'))
 
 server.get('/', productControllers.getProducts); // getting products at /
 server.get('/new', productControllers.getAddForm);
+server.get('/update-product', productControllers.getUpdateProductView);
 server.post('/', validatingData, productControllers.addNewProduct);
 
 server.use(express.static('src/views')); 

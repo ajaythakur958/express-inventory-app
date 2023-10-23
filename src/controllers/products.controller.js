@@ -15,9 +15,23 @@ export default class productController{
 
     addNewProduct(req,res){
         console.log(req.body);
-        productModel.add(req.body);
+        productModel.add(req.body); //adding new product to products
         let products = productModel.get();
         res.render('products', {products: products})
+    }
+
+    getUpdateProductView(req,res,next){
+        // if product exist then return view to update
+        const {id} = req.body;
+        const productFound = productModel.getById(id);
+        if (productFound){
+            res.render(update-product, {product:productFound, errorMessage:null})
+        } 
+        // else return with product not found
+        else {
+            res.status(401).send('product not found');
+        }
+
     }
 
 
