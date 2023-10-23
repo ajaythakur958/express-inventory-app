@@ -20,6 +20,7 @@ server.get('/', productControllers.getProducts); // getting products at /
 server.get('/new', productControllers.getAddForm);
 server.get('/update-product/:id', productControllers.getUpdateProductView);
 server.post('/', validatingData, productControllers.addNewProduct);
+server.post('/update-product/', productControllers.postUpdateProduct);
 
 server.use(express.static('src/views')); 
 

@@ -1,5 +1,5 @@
 export default class productModel {
-    constructor(_id, _desc, _name, _price, _img){
+    constructor(_id, _name, _desc, _price, _img){
         this.id = _id
         this.name = _name
         this.desc = _desc
@@ -11,11 +11,19 @@ export default class productModel {
         return products;
     }
 
+    static update(productObj){
+      const index = products.findIndex(
+        (p) => p.id == productObj.id
+      );
+      products[index] = productObj;
+
+    }
+
     static add(productObj){
       let newProduct = new productModel(
         products.length +1, 
-        productObj.desc,
         productObj.name,
+        productObj.desc,
         productObj.price,
         productObj.imgurl
       )
@@ -25,9 +33,6 @@ export default class productModel {
 
     static getById(id){
       return products.find((p)=>{
-        if (p.id == id){
-          console.log(p);
-        }
         return p.id == id})
     }
 }
