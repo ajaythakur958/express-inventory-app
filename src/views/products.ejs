@@ -8,6 +8,7 @@
               <th>Price</th>
               <th>Pic</th>
               <th>Edit</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -20,6 +21,7 @@
                 <td><%= product.price %></td>
                 <td><img src="<%= product.imgurl %>" ></td>
                 <td><a href="/update-product/<%= product.id %>" class="btn btn-warning">Update</a></td>
+                <td><a href="/delete-product" class="btn btn-danger">Delte</a></td>
               </tr>
 
             <% }) %>

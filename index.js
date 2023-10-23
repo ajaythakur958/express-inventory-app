@@ -20,8 +20,8 @@ server.get('/', productControllers.getProducts); // getting products at /
 server.get('/new', productControllers.getAddForm);
 server.get('/update-product/:id', productControllers.getUpdateProductView);
 server.post('/', validatingData, productControllers.addNewProduct);
-server.post('/update-product/', productControllers.postUpdateProduct);
-server.get('/delete-product/', productControllers.getDeleteProduct);
+server.post('/update-product', productControllers.postUpdateProduct);
+server.get('/delete-product', productControllers.getDeleteProduct);
 
 server.use(express.static('src/views')); 
 

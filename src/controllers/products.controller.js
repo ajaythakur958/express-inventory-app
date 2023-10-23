@@ -43,7 +43,6 @@ export default class productController{
     getDeleteProduct(req,res,next){
         productModel.delete(req.body); //deleting product from products 
         let products = productModel.get();
-        console.log(products[products.length - 1]);
         res.render('products', {products: products})
     }
 
