@@ -22,10 +22,10 @@ export default class productController{
 
     getUpdateProductView(req,res,next){
         // if product exist then return view to update
-        const {id} = req.body;
+        const id = req.params.id;
         const productFound = productModel.getById(id);
         if (productFound){
-            res.render(update-product, {product:productFound, errorMessage:null})
+            res.render('update-product', {product:productFound, errorMessage:null})
         } 
         // else return with product not found
         else {

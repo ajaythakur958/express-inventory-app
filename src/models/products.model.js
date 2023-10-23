@@ -24,7 +24,11 @@ export default class productModel {
     }
 
     static getById(id){
-      return products.find((p)=>{p.id == id})
+      return products.find((p)=>{
+        if (p.id == id){
+          console.log(p);
+        }
+        return p.id == id})
     }
 }
 
