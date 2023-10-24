@@ -13,15 +13,18 @@ server.use(express.urlencoded({extended: true})); // added middleware to parse f
 // creating productController instance
 const productControllers = new productController();
 
+server.use(express.static('public')) // exposing public folder staticly so js files can be directly accessable for views
+
 server.set("view engine", "ejs");     // sets view engine ejs in header
 server.set("views", path.join(path.resolve(),'src','views'))
 
+//routes
 server.get('/', productControllers.getProducts); // getting products at /
 server.get('/new', productControllers.getAddForm);
 server.get('/update-product/:id', productControllers.getUpdateProductView);
 server.post('/', validatingData, productControllers.addNewProduct);
 server.post('/update-product', productControllers.postUpdateProduct);
-server.post('/delete-product', productControllers.postDeleteProduct);
+server.post('/delete-product/:id', productControllers.postDeleteProduct);
 
 server.use(express.static('src/views')); 
 
