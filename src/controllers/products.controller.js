@@ -36,7 +36,6 @@ export default class productController{
     postUpdateProduct (req,res,next){
         productModel.update(req.body); //adding updated details to specific product to updated
         let products = productModel.get();
-        console.log(products[products.length - 1]);
         res.render('products', {products: products})
     }
 

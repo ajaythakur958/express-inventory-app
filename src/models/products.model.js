@@ -19,12 +19,10 @@ export default class productModel {
 
   }
 
-  static delete(productObj) {
-    console.log(productObj.id);
+  static delete(productId) {
     const index = products.findIndex(
-      (p) => p.id == productObj.id
+      (p) => p.id == productId
     );
-    console.log(index);
     products.splice(index, 1);
   }
 
