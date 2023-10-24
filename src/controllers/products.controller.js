@@ -40,7 +40,7 @@ export default class productController{
         res.render('products', {products: products})
     }
 
-    getDeleteProduct(req,res,next){
+    postDeleteProduct(req,res,next){
         productModel.delete(req.body); //deleting product from products 
         let products = productModel.get();
         res.render('products', {products: products})
