@@ -6,7 +6,6 @@ const validatingData = async (
     res,
     next
 ) => {
-    console.log(req.body);
     // first setup rules for express-validator
     const rules = [
         body('name').notEmpty().withMessage('Name is required'),

@@ -26,13 +26,13 @@ export default class productModel {
     products.splice(index, 1);
   }
 
-  static add(productObj) {
+  static add(name,desc,price,imgurl) {
     let newProduct = new productModel(
       products.length + 1,
-      productObj.name,
-      productObj.desc,
-      productObj.price,
-      productObj.imgurl
+      name,
+      desc,
+      price,
+      imgurl
     )
     products.push(newProduct);
 
