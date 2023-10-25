@@ -11,7 +11,7 @@ const validatingData = async (
     const rules = [
         body('name').notEmpty().withMessage('Name is required'),
         body('price').isFloat({ gt: 0 }).withMessage('invalid price'),
-        body('imgurl').isURL().withMessage('invalidURL')
+        // body('imgurl').isURL().withMessage('invalidURL')
     ];
 
     // second step is to run rules
