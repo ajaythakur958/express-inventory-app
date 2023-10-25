@@ -23,7 +23,7 @@ server.set("views", path.join(path.resolve(),'src','views'))
 server.get('/', productControllers.getProducts); // getting products at /
 server.get('/new', productControllers.getAddForm);
 server.get('/update-product/:id', productControllers.getUpdateProductView);
-server.post('/', validatingData, uploadFile.single('imgurl'), productControllers.addNewProduct);
+server.post('/', uploadFile.single('imgurl'), validatingData,  productControllers.addNewProduct);
 server.post('/update-product', productControllers.postUpdateProduct);
 server.post('/delete-product/:id', productControllers.postDeleteProduct);
 
