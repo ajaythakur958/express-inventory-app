@@ -5,12 +5,12 @@ export default class productController{
     getProducts(req, res){
         let products = productModel.get(); 
 
-        res.render("products", {products:products}) // rendering products.ejs to index.js
+        res.render("products", {products:products, userEmail: req.session.userEmail}) // rendering products.ejs to index.js
     }
 
     getAddForm(req, res){
         let errors =[];
-        return res.render('new-product', {errorMessage:errors[0]})
+        return res.render('new-product', {errorMessage:errors[0], userEmail: req.session.userEmail})
     }
 
     addNewProduct(req,res){
@@ -19,7 +19,7 @@ export default class productController{
         const imgurl = "images/"+req.file.filename
         productModel.add(name,desc,price,imgurl); //adding new product to products
         let products = productModel.get();
-        res.render('products', {products: products})
+        res.render('products', {products: products, userEmail: req.session.userEmail})
     }
 
     getUpdateProductView(req,res,next){
@@ -27,7 +27,7 @@ export default class productController{
         const id = req.params.id;
         const productFound = productModel.getById(id);
         if (productFound){
-            res.render('update-product', {product:productFound, errorMessage:null})
+            res.render('update-product', {product:productFound, errorMessage:null, userEmail: req.session.userEmail})
         } 
         // else return with product not found
         else {
@@ -39,7 +39,7 @@ export default class productController{
     postUpdateProduct (req,res,next){
         productModel.update(req.body); //adding updated details to specific product to updated
         let products = productModel.get();
-        res.render('products', {products: products})
+        res.render('products', {products: products, userEmail: req.session.userEmail})
     }
 
     postDeleteProduct(req,res,next){
@@ -50,7 +50,7 @@ export default class productController{
         }
         productModel.delete(id); //deleting product from products 
         let products = productModel.get();
-        res.render('products', {products: products})
+        res.render('products', {products: products, userEmail: req.session.userEmail})
     }
 
 

@@ -22,6 +22,6 @@ export default class UserController {
       req.session.userEmail = email;
       console.log(req.session);
       const products = productModel.get();
-      res.render('products', {products});
+      res.render('products', {products, userEmail: req.session.userEmail});
     }
   }
