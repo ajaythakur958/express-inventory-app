@@ -19,6 +19,8 @@ export default class UserController {
       if (!user){
         res.render('login', {errorMessage: 'Invalid User'});
       }
+      req.session.userEmail = email;
+      console.log(req.session);
       const products = productModel.get();
       res.render('products', {products});
     }

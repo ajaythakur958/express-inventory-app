@@ -6,6 +6,7 @@ import { uploadFile } from './src/middleware/file-upload.middleware.js';
 import productController from './src/controllers/products.controller.js';
 import usersController from './src/controllers/users.controller.js';
 import session from 'express-session';
+import { auth } from './src/middleware/auth.middleware.js';
 
 const server = express();
 
@@ -34,8 +35,8 @@ server.set("views", path.join(path.resolve(),'src','views'))
 //routes
 server.get('/register', usersControllers.getRegister);
 server.get('/login', usersControllers.getLogin);
-server.get('/', productControllers.getProducts); // getting products at /
-server.get('/new', productControllers.getAddForm);
+server.get('/', auth, productControllers.getProducts); // getting products at /
+server.get('/new', auth, productControllers.getAddForm);
 server.get('/update-product/:id', productControllers.getUpdateProductView);
 server.post('/', uploadFile.single('imgurl'), validatingData,  productControllers.addNewProduct);
 server.post('/update-product', productControllers.postUpdateProduct);
