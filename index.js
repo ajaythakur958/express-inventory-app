@@ -5,6 +5,7 @@ import validatingData from './src/middleware/validation.middleware.js';
 import { uploadFile } from './src/middleware/file-upload.middleware.js';
 import productController from './src/controllers/products.controller.js';
 import usersController from './src/controllers/users.controller.js';
+import session from 'express-session';
 
 const server = express();
 
@@ -17,6 +18,15 @@ const productControllers = new productController();
 const usersControllers =  new usersController();
 
 server.use(express.static('public')) // exposing public folder staticly so js files can be directly accessable for views
+server.use(session(
+    {
+        secret:'SecretKey',
+        resave:false,
+        saveUninitialized: true,
+        cookie: {secure: false}
+
+    }
+));
 
 server.set("view engine", "ejs");     // sets view engine ejs in header
 server.set("views", path.join(path.resolve(),'src','views'))
@@ -30,6 +40,8 @@ server.get('/update-product/:id', productControllers.getUpdateProductView);
 server.post('/', uploadFile.single('imgurl'), validatingData,  productControllers.addNewProduct);
 server.post('/update-product', productControllers.postUpdateProduct);
 server.post('/delete-product/:id', productControllers.postDeleteProduct);
+server.post('/register', usersControllers.postRegister);
+server.post('/login', usersControllers.postLogin);
 
 server.use(express.static('src/views')); 
 
