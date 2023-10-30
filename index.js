@@ -35,7 +35,7 @@ server.set("views", path.join(path.resolve(),'src','views'))
 //routes
 server.get('/register', usersControllers.getRegister);
 server.get('/login', usersControllers.getLogin);
-// server.get('/logout', usersControllers.getLogout);
+server.get('/logout', usersControllers.getLogout);
 server.get('/', auth, productControllers.getProducts); // getting products at /
 server.get('/new', auth, productControllers.getAddForm);
 server.get('/update-product/:id', productControllers.getUpdateProductView);
